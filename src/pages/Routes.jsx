@@ -3,13 +3,28 @@ import Searchbar from "../components/common/Searchbar";
 import Map from "../components/common/Map";
 import axios from "../config/axios";
 import { useEffect } from "react";
+import { TrafficController } from "../components/common/TrafficController";
+import { useMap } from "../hooks/useMap";
+import ViewStops from "../components/common/ViewStops";
 
 
 
 const Routes = () => {
+  const {setMapStyle} = useMap()
   return (
     <div className="relative">
-      <Searchbar/>
+      <div className="absolute w-full max-w-[500px] top-[70px] left-0 right-0 z-20 px-4 mx-auto">
+        <div className="grid gap-2 bg-[#161E29] p-4 border border-[#2E3C51] rounded-lg md:p-6">
+          <p className="text-sm text-slate-400">Navigate Routes</p>
+          <div className="w-full flex flex-col gap-3 ">
+            <Searchbar/>
+            <div className="flex-center justify-between">
+              <TrafficController onChange={setMapStyle}/>
+              {/* <ViewStops/> */}
+            </div>
+          </div>
+        </div>
+      </div>
       <Map/>
     </div>
   )

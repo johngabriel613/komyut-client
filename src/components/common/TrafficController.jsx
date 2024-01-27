@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fromJS } from 'immutable';
-import MAP_STYLE from '../../style.json';
+import MAP_STYLE from '../../style-dark.json';
 import { useMap } from '../../hooks/useMap';
 
 const defaultMapStyle = fromJS(MAP_STYLE);
@@ -21,7 +21,7 @@ function getMapStyle({ visibility }) {
   return defaultMapStyle.set('layers', layers);
 }
 
-const StyleControls = (props) => {
+const TrafficController = (props) => {
   const {visibility, setVisibility} = useMap()
 
   useEffect(() => {
@@ -35,18 +35,23 @@ const StyleControls = (props) => {
 
   return (
     <div className="">
-      {categories.map((name) => (
-        <div key={name} className="input">
-          <label>{name}</label>
-          <input
-            type="checkbox"
-            checked={visibility[name]}
-            onChange={(evt) => onVisibilityChange(name, evt.target.checked)}
-          />
+      {categories.map((name, index) => (
+      <div className="flex items-center w-full" key={index}>
+        <label htmlFor="toggleB" className="flex items-center cursor-pointer">
+          <div className="relative">
+            <input type="checkbox" id="toggleB" className="sr-only" checked={visibility[name]} onChange={(evt) => onVisibilityChange(name, evt.target.checked)}/>
+            <div className="block bg-[#10151D] border border-slate-300 w-8 h-5 rounded-full"></div>
+            <div className="dot absolute left-1 top-1 bg-slate-300 w-3 h-3 rounded-full transition"></div>
+          </div>
+          <div className="ml-1 text-slate-300 text-sm font-medium whitespace-nowrap">
+            Realtime Traffic
+          </div>
+        </label>
+
         </div>
       ))}
     </div>
   );
 };
 
-export {StyleControls, getMapStyle};
+export {TrafficController, getMapStyle};

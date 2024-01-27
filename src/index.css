@@ -6,6 +6,19 @@
   html{
     font-family: 'Inter', sans-serif;
   }
+
+  body{
+    background: #10151D;
+  }
+
+  
+  p{
+    line-height: 1.5;
+  }
+
+  img{
+    display: block;
+  }
 }
 
 @layer components {
@@ -13,32 +26,53 @@
     @apply flex items-center;
   }
 
-  .bg-home{
-    position: relative;
-    background: rgba(0,0,0,0.2) url('./assets/homebanner.jpg') no-repeat center;
-    background-size: cover;
-    isolation: isolate;
-    overflow: hidden;
-  }
-
-  .bg-home::before {
-    content: '';
+  .bg-main{
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, rgb(16, 21, 29, .5) 50%,  #10151D 90%), url('./assets/banner-bg.jpg') no-repeat center;
+    background-size: cover;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Adjust the alpha value for darkness */
+    height: 60vh;
     z-index: -1;
   }
+
+  .pulse-btn {
+    animation: borderPulse 800ms infinite ease-out;
+    transition: background 1000ms;
+  }
+
+  .pulse-btn:hover{
+    animation: none;
+    @apply bg-blue-300;
+  }
+  
+  @keyframes borderPulse {
+    0% {
+      box-shadow: inset 0px 0px 0px 3px rgb(96, 165, 250, .4), 0px 0px 0px 0px rgb(191, 219, 254);
+    }
+    100% {
+      box-shadow: inset 0px 0px 0px 1px rgba(117, 117, 255,.2), 0px 0px 0px 8px rgba(255,255,255,0);
+    }
+  }
+
+  input:checked ~ .dot {
+    transform: translateX(100%);
+    @apply bg-blue-400;
+  }
+
+  input:checked ~ .block {
+    @apply border-blue-400;
+  }
+
 }
 
 @layer utilities {
   .container {
-    @apply max-w-6xl mx-auto;
+    @apply max-w-7xl mx-auto;
   }
 
   .navlink.active {
-    @apply text-slate-800;
+    @apply text-slate-100;
   }
 }

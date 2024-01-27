@@ -8,9 +8,10 @@ function MapProvider({children}){
   const [mapStyle, setMapStyle] = useState();
   const [visibility, setVisibility] = useState({traffic: false})
   const [geojson, setGeojson] = useState()
+  const [searchValue, setSearchValue] = useState()
   
   return(
-    <MapContext.Provider value={{mapStyle, setMapStyle, visibility, setVisibility, geojson, setGeojson}}>
+    <MapContext.Provider value={{mapStyle, setMapStyle, visibility, setVisibility, geojson, setGeojson, searchValue, setSearchValue}}>
       {children}
     </MapContext.Provider>
   )
