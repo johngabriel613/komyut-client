@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {Map as Reactmap, Marker} from 'react-map-gl';
+import {Map as Reactmap, Marker, GeolocateControl, FullscreenControl, NavigationControl, ScaleControl} from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {getMapStyle} from './TrafficController'
 import { useMap as useMapHook} from '../../hooks/useMap';
@@ -63,6 +63,10 @@ const Map = () => {
         style={{width: '100%', height: '100vh'}}
         mapStyle={mapStyle && mapStyle.toJS()}
       >
+        <GeolocateControl position="bottom-right" />
+        <FullscreenControl position="bottom-right" />
+        <NavigationControl position="bottom-right" />
+        <ScaleControl />
         {geojson &&
           geojson.geometry.coordinates.map((point, index) => (
             <Marker latitude={point[1]} longitude={point[0]} key={index}>
