@@ -1,11 +1,19 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation} from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import { navLinks } from '../../constants';
 import { Icon } from '@iconify/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Navbar = () => {
   const [isNavActive, setIsNavActive] = useState(false)
+  const location = useLocation()
+
+  useEffect(() => {
+    if(isNavActive){
+      setIsNavActive(false)
+    }
+  },[location.pathname])
+
 
   return (
     <header className='fixed top-0 w-full bg-gradient-to-b from-[#10151D] via-[#10151D]/50 to-transparent py-4 md:py-6 z-50'>
@@ -15,7 +23,7 @@ const Navbar = () => {
         <ul className={`grid gap-2 text-sm text-slate-400 absolute top-12 right-4 bg-[#161E29] py-4 px-8 rounded border border-[#2E3C51] md:static md:flex-center md:gap-6 md:p-0 md:text-base md:bg-transparent md:border-none md:visible md:opacity-1 ${isNavActive ? 'visible opacity-1' : 'invisible opacity-'}`}>
           {navLinks.map((link, index) => (
             <li key={index}>
-              <NavLink to={link.path} className='navlink'>{link.text}</NavLink>
+              <NavLink to={link.path} onClick={() => setIsNavActive(false)} className='navlink'>{link.text}</NavLink>
             </li>
           ))}
         </ul>
