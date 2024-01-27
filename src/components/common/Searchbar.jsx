@@ -8,7 +8,7 @@ import { useMap } from '../../hooks/useMap';
 const Searchbar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [suggestions, setSuggestions] = useState();
+  const [suggestions, setSuggestions] = useState([]);
   const [isSearchActive, setIsSearchActive] = useState(false);
   const {geojson, setGeojson, searchValue, setSearchValue} = useMap();
 
@@ -62,7 +62,7 @@ const Searchbar = () => {
             </>
           } 
           <input type="text" name="intent" value="search" readOnly hidden />
-          {suggestions && 
+          {suggestions && suggestions.length !== 0 && 
             <div className='absolute w-full max-h-[200px] top-[50px] text-white bg-[#10151D] border border-[#2E3C51] transition-all duration-100 overflow-y-auto divide-y divide-[#434a58] rounded z-30 scrollbar-thin scrollbar-thumb-blue-400 scrollbar-track-slate-800'>
               {suggestions.map(data => (
                 <div className='grid gap-1 py-2 px-4 cursor-pointer hover:bg-[#2a2f36]' key={data.route_id} onClick={() => {setSearchParams({route_id: data.route_id});  setSuggestions('');}}>

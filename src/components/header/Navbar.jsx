@@ -20,7 +20,7 @@ const Navbar = () => {
       <nav className='container flex-center justify-between'>
         <img className='w-[100px] md:w-[125px]' src={logo} alt="komyut" />
         <Icon onClick={() => setIsNavActive(prev => !prev)} icon={isNavActive ? 'tabler:x' : 'tabler:menu-2'} className='block text-white md:hidden' width={24}/>
-        <ul className={`grid gap-2 text-sm text-slate-400 absolute top-12 right-4 bg-[#161E29] py-4 px-8 rounded border border-[#2E3C51] md:static md:flex-center md:gap-6 md:p-0 md:text-base md:bg-transparent md:border-none md:visible md:opacity-1 ${isNavActive ? 'visible opacity-1' : 'invisible opacity-'}`}>
+        <ul className={`grid gap-2 text-sm text-slate-400 absolute top-12 right-4 bg-[#161E29] py-4 px-8 rounded border border-[#2E3C51] md:static md:flex-center md:gap-8 md:p-0 md:text-base md:bg-transparent md:border-none md:visible md:opacity-1 ${isNavActive ? 'visible opacity-1' : 'invisible opacity-'}`}>
           {navLinks.map((link, index) => (
             <li key={index}>
               <NavLink to={link.path} onClick={() => setIsNavActive(false)} className='navlink'>{link.text}</NavLink>
