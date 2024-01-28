@@ -62,10 +62,11 @@ const Map = () => {
         }}
         style={{width: '100%', height: '100vh'}}
         mapStyle={mapStyle && mapStyle.toJS()}
+        
       >
-        <GeolocateControl position="bottom-right" />
-        <FullscreenControl position="bottom-right" />
         <NavigationControl position="bottom-right" />
+        <FullscreenControl position="bottom-right" />
+        <GeolocateControl position="bottom-right" />  
         <ScaleControl />
         {geojson &&
           geojson.geometry.coordinates.map((point, index) => (

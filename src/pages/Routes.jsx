@@ -13,7 +13,7 @@ const Routes = () => {
   const {setMapStyle} = useMap()
   return (
     <div className="relative">
-      <div className="absolute w-full max-w-[500px] top-[70px] left-0 right-0 z-20 px-4 mx-auto">
+      <div className="absolute w-full max-w-[500px] top-[50px] left-0 right-0 z-20 px-4 mx-auto md:top-[70px]">
         <div className="grid gap-2 bg-[#161E29] p-4 border border-[#2E3C51] rounded-lg md:p-6">
           <p className="text-sm text-slate-400">Navigate Routes</p>
           <div className="w-full flex flex-col gap-3 ">
