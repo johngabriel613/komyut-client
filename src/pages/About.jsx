@@ -1,4 +1,3 @@
-import React from 'react'
 import SectionBanner from '../components/common/SectionBanner'
 import Discover from '../components/common/Discover'
 

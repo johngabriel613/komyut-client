@@ -1,13 +1,9 @@
-
 import Searchbar from "../components/common/Searchbar";
 import Map from "../components/common/Map";
 import axios from "../config/axios";
-import { useEffect } from "react";
 import { TrafficController } from "../components/common/TrafficController";
 import { useMap } from "../hooks/useMap";
-import ViewStops from "../components/common/ViewStops";
-
-
+import Legend from "../components/common/Legend";
 
 const Routes = () => {
   const {setMapStyle} = useMap()
@@ -20,7 +16,7 @@ const Routes = () => {
             <Searchbar/>
             <div className="flex-center justify-between">
               <TrafficController onChange={setMapStyle}/>
-              {/* <ViewStops/> */}
+              <Legend/>
             </div>
           </div>
         </div>
@@ -29,7 +25,6 @@ const Routes = () => {
     </div>
   )
 }
-
 
 
 export const action = async({request}) => {

@@ -1,5 +1,4 @@
 import { BannerBG, Banner } from "../components/common/Banner"
-import LogoCarousel from "../components/common/LogoCarousel"
 import VehicleCard from "../components/common/VehicleCard"
 import { vehicles } from "../constants"
 

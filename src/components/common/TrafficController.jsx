@@ -44,7 +44,7 @@ const TrafficController = (props) => {
             <div className="dot absolute left-1 top-1 bg-slate-300 w-3 h-3 rounded-full transition"></div>
           </div>
           <div className="ml-1 text-slate-300 text-sm font-medium whitespace-nowrap">
-            Realtime Traffic
+            Traffic
           </div>
         </label>
 

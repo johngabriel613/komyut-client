@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {Map as Reactmap, Marker, GeolocateControl, FullscreenControl, NavigationControl, ScaleControl} from 'react-map-gl';
+import {Map as Reactmap, Marker, Popup, GeolocateControl, FullscreenControl, NavigationControl, ScaleControl} from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {getMapStyle} from './TrafficController'
 import { useMap as useMapHook} from '../../hooks/useMap';
@@ -13,6 +13,7 @@ const Map = () => {
   const {mapStyle, setMapStyle, visibility, geojson, setGeojson, setSearchValue} = useMapHook();
   const [searchParams] = useSearchParams()
   const mapRef = useRef(null)
+  const [popupInfo, setPopupInfo] = useState(null)
 
 
   const fetchRoute = async() => {
@@ -24,15 +25,27 @@ const Map = () => {
     }
   }
 
+  const pin = (
+    <img
+      src={
+        geojson?.route_type === "JEEP" ? jeepmarker
+        : geojson?.route_type === "BUS" ? busmarker
+        : geojson?.route_type === "TRAIN" ? trainmarker
+        : null
+      }
+      alt=""
+    />
+  );
+
   useEffect(() => {
 
     const routeId = searchParams.get('route_id');
 
     if(routeId){
-      fetchRoute().then((geojson) => {
-        setGeojson(geojson);
-        setSearchValue(geojson?.route_long_name)
-        mapRef?.current?.flyTo({center:  geojson.geometry.center})
+      fetchRoute().then((data) => {
+        setGeojson(data);
+        setSearchValue(data?.route_long_name)
+        mapRef?.current?.flyTo({center:  data.center})
       }).catch((error) => {
         console.error("Error fetching route:", error);
       });
@@ -69,20 +82,29 @@ const Map = () => {
         <GeolocateControl position="bottom-right" />  
         <ScaleControl />
         {geojson &&
-          geojson.geometry.coordinates.map((point, index) => (
-            <Marker latitude={point[1]} longitude={point[0]} key={index}>
-             <img
-                src={
-                  geojson.route_type === "JEEP" ? jeepmarker
-                  : geojson.route_type === "BUS" ? busmarker
-                  : geojson.route_type === "TRAIN" ? trainmarker
-                  : null
-                }
-                alt=""
-              />
+          geojson.stops.map((stop, index) => (
+            <Marker latitude={stop.coordinates[1]} longitude={stop.coordinates[0]} key={index} onClick={e => {
+              e.originalEvent.stopPropagation();
+              setPopupInfo(stop);
+            }}>
+             {pin}
             </Marker>
           ))
         }
+
+        {popupInfo && (
+          <Popup
+            anchor="top"
+            longitude={Number(popupInfo.coordinates[0])}
+            latitude={Number(popupInfo.coordinates[1])}
+            onClose={() => setPopupInfo(null)}
+            className='pop-up'
+          >
+            <div>
+              {popupInfo.stop_name}
+            </div>
+          </Popup>
+        )}
       </Reactmap>
     </>
   )

@@ -1094,12 +1094,12 @@
                     "match",
                     ["get", "congestion"],
                     ["moderate"],
-                    "#eab308",
+                    "#FACC15",
                     ["heavy"],
-                    "#ef4444",
+                    "#F87171",
                     ["severe"],
-                    "#ef4444",
-                    "#22c55e"
+                    "#F87171",
+                    "#4ADE80"
                 ],
                 "line-width": 3
             }
