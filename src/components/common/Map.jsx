@@ -77,9 +77,9 @@ const Map = () => {
         mapStyle={mapStyle && mapStyle.toJS()}
         
       >
-        <NavigationControl position="bottom-right" />
-        <FullscreenControl position="bottom-right" />
-        <GeolocateControl position="bottom-right" />  
+        <NavigationControl position="bottom-left" />
+        <FullscreenControl position="bottom-left" />
+        <GeolocateControl position="bottom-left" />  
         <ScaleControl />
         {geojson &&
           geojson.stops.map((stop, index) => (

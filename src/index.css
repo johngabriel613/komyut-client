@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  html{
+  *{
     font-family: 'Inter', sans-serif;
   }
 
@@ -114,6 +114,71 @@
   .pop-up .mapboxgl-popup-close-button{
     @apply hidden;
   }
+
+  /* customize chat-ui */
+  .my-chat-container{
+    @apply rounded-none border-0;
+    background: none;
+  }
+
+  .my-chat-container .cs-chat-container{
+    background: none;
+  }
+
+  .my-chat-container .cs-message-list{
+    @apply bg-[#161e29] text-slate-300 border border-[#2E3C51];
+  }
+
+  .my-chat-container .cs-message-list__scroll-wrapper{
+    @apply pt-2;
+  }
+
+  .my-chat-container .cs-typing-indicator{
+    background: none;
+    padding: .5rem 1rem;
+  }
+
+  .my-chat-container .cs-message .cs-message__content{
+    @apply bg-slate-700  text-white text-sm mb-1;
+    border-radius: .7rem .7rem .7rem 0;
+  }
+  .my-chat-container .cs-message--outgoing .cs-message__content{
+    @apply bg-blue-400 text-slate-800;
+    border-radius: .7rem .7rem 0 .7rem;
+  }
+
+  .my-chat-container .cs-message-input{
+    @apply bg-[#161e29] border border-[#2E3C51] rounded-br-md rounded-bl-md py-3;
+  }
+
+  .my-chat-container .cs-message-input__content-editor-wrapper{
+    @apply ml-2 ;
+  }
+
+  .my-chat-container .cs-message-input__content-editor-wrapper, .my-chat-container .cs-message-input__content-editor{
+    @apply bg-[#10151D] text-slate-300;
+  }
+
+  .my-chat-container .cs-message-input__content-editor{
+    font-family: 'Inter', sans-serif;
+    @apply text-white;
+  }
+
+  .my-chat-container .cs-message-input__content-editor[data-placeholder]:empty.cs-message-input__content-editor[data-placeholder]:empty::before{
+    @apply text-slate-300;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .my-chat-container .cs-message-input__content-editor-wrapper{
+    @apply rounded-md;
+  }
+
+  
+
+  .my-chat-container .cs-button--attachment{
+    @apply hidden ;
+  }
+
 }
 
 @layer utilities {

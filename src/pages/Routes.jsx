@@ -4,9 +4,14 @@ import axios from "../config/axios";
 import { TrafficController } from "../components/common/TrafficController";
 import { useMap } from "../hooks/useMap";
 import Legend from "../components/common/Legend";
+import ChatBox from "../components/common/ChatBox";
+import { Icon } from "@iconify/react";
+import { useState } from "react";
 
 const Routes = () => {
-  const {setMapStyle} = useMap()
+  const [isChatActive, setIsChatActive] = useState(false);
+  const {setMapStyle} = useMap();
+  
   return (
     <div className="relative">
       <div className="absolute w-full max-w-[500px] top-[50px] left-0 right-0 z-20 px-4 mx-auto md:top-[70px]">
@@ -19,6 +24,12 @@ const Routes = () => {
               <Legend/>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="absolute bottom-4 right-0 px-4 z-40">
+        {isChatActive && <ChatBox/>}
+        <div className="flex justify-end mt-12">
+          <Icon icon={isChatActive ? "iconamoon:close" : "bxs:chat"} width={60}  className="bg- p-3 rounded-full text-blue-400 bg-[#161E29] border border-[#2E3C51] cursor-pointer"  onClick={() => setIsChatActive(prev => !prev)}/>
         </div>
       </div>
       <Map/>
