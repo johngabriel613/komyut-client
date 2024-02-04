@@ -18,7 +18,6 @@ const ChatBox = () => {
     }
   ])
 
-  const API_KEY = "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";
 
   async function handleSend(message){
     const newMessage = {
@@ -64,7 +63,7 @@ const ChatBox = () => {
     await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${API_KEY}`,
+        "Authorization": `Bearer ${import.meta.env.VITE_OPENAI_KEY}`,
         "Content-type": 'application/json'
       },
       body: JSON.stringify(apiRequestBody)
