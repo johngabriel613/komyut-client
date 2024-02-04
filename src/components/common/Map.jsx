@@ -73,7 +73,7 @@ const Map = () => {
             longitude: 121.0223,
             zoom: 12,
         }}
-        style={{width: '100%', height: '100vh'}}
+        style={{width: '100%', height: '100dvh'}}
         mapStyle={mapStyle && mapStyle.toJS()}
         
       >

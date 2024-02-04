@@ -27,7 +27,9 @@ const Routes = () => {
         </div>
       </div>
       <div className="absolute bottom-4 right-0 px-4 z-40">
-        {isChatActive && <ChatBox/>}
+        <div className={isChatActive ? "block" : "hidden"}>
+          <ChatBox/>
+        </div>
         <div className="flex justify-end mt-12">
           <Icon icon={isChatActive ? "iconamoon:close" : "bxs:chat"} width={60}  className="bg- p-3 rounded-full text-blue-400 bg-[#161E29] border border-[#2E3C51] cursor-pointer"  onClick={() => setIsChatActive(prev => !prev)}/>
         </div>

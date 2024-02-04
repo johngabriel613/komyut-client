@@ -18,7 +18,7 @@ const ChatBox = () => {
     }
   ])
 
-  const API_KEY = "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";
+  const API_KEY = "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";
 
   async function handleSend(message){
     const newMessage = {
@@ -92,7 +92,7 @@ const ChatBox = () => {
       </div>
       <MainContainer className="my-chat-container">
         <ChatContainer>
-          <MessageList typingIndicator={isTyping ? <TypingIndicator content="Gaspan is typing"/> : null}>
+          <MessageList typingIndicator={isTyping ? <TypingIndicator content="typing"/> : null}>
             {messages.map((message, i) => {
               return <Message key={i} model={message}/>
             })}
